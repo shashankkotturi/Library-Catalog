@@ -1,30 +1,29 @@
 const rp = require('request-promise');
-const urls = require('../googleBooksConfig');
+const urls = require('../googleBooksConfig/urls');
+const credentials = require('../googleBooksConfig/credentials/books-app-credentials.json');
 
 const booksController = ((req, res, next) => {
+  const API_KEY = credentials.private_key;
   const options = {
     uri: urls.searchByVolume,
     qs: {
       q: req.query.volume,
+      // key: API_KEY
     },
   };
   rp(options)
   .then((response) => {
-    res.json(JSON.parse(response));
+    res.json({
+      [req.query.volume]: JSON.parse(response)
+    });
   })
   .catch((err) => {
-    res.json({ err: err.body });
+    res.json({
+      [req.query.volume]: {
+        err: err.body
+      }
+    });
   });
-  // const jsonQueryString = req.query;
-  // // Filter books using jsonQueryString
-  // res.json(books);
-  // books.search('Professional Javascript for Web Developers', (err, result) => {
-  //   if(!err) {
-  //     res.json(result);
-  //   } else {
-  //     res.json(err);
-  //   }
-  // });
 });
 
 module.exports = booksController;
