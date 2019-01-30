@@ -1,11 +1,8 @@
-import { combineReducers } from 'redux';
-
-// calling the default reducer to create a link
-import defaultReducer from './default-reducer';
+import { combineReducers } from "redux";
+import booksReducer from "./booksReducer";
 
 const rootReducers = combineReducers({
-    // add reducer files references here
-    default: defaultReducer
+  booksReducer: booksReducer
 });
 
 export default rootReducers;

@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-import { connect } from 'react-redux';
-import { defaultFunction } from './actions';
+// import logo from './logo.svg';
+// import './App.css';
+import LoginPageContainer from "./components/loginPage/loginPageContainer";
 
 class App extends Component {
-
-  componentDidMount() {
-    // call default function to display redux operation
-    this.props.defaultFunction();
-  }
-
   render() {
     return (
-      <div>
-        React Redux Starter Template
+      <div className="App">
+        <LoginPageContainer />
+
+        {/* <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+        </header> */}
       </div>
     );
   }
 }
 
-// function to convert the global state obtained from redux to local props
-function mapStateToProps(state) {
-  return {
-    default: state.default
-  };
-}
-
-export default connect(mapStateToProps, { defaultFunction })(App);
+export default App;
